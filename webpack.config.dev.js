@@ -2,7 +2,7 @@ const { getHTMLPlugins, getOutput, getCopyPlugins, getFirefoxCopyPlugins } = req
 const path = require('path');
 
 const generalConfig = {
-  mode: 'production',
+  mode: 'development',
   entry: {
     "popup": path.resolve(__dirname, "src/popup/popup.jsx"),
     "options": path.resolve(__dirname, "src/options/options.jsx"),
@@ -19,6 +19,9 @@ const generalConfig = {
         query: {
           presets: ['@babel/preset-env','@babel/preset-react'],
         },
+        resolve: {
+          extensions: ['.js', '.jsx']
+        }
       },
     ]
   },

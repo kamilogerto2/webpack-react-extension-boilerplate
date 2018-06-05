@@ -1,7 +1,7 @@
 {
   "appName": {
-    "message": "Ext Starter",
-    "description": "The name of the extension."
+    "message": "Ext React Starter",
+    "description": "The name of the react extension."
   },
   "appDescription": {
     "message": "Boilerplate for building cross browser extensions",
