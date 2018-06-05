@@ -1,5 +1,6 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { getHTMLPlugins, getOutput, getCopyPlugins, getZipPlugin, getFirefoxCopyPlugins } = require('./webpack.utils');
+const CleanWebpackPlugin = require('clean-webpack-plugin'); //installed via npm
 const path = require('path');
 
 const generalConfig = {
@@ -27,32 +28,35 @@ const generalConfig = {
 module.exports = [
   {
     ...generalConfig,
-    output: getOutput('chrome'),
+    output: getOutput('chrome', 'temp'),
     plugins: [
+      new CleanWebpackPlugin(['dist', 'temp']),
       new UglifyJsPlugin(),
-      ...getHTMLPlugins('chrome'),
-      ...getCopyPlugins('chrome'),
-      getZipPlugin('chrome')
+      ...getHTMLPlugins('chrome', 'temp'),
+      ...getCopyPlugins('chrome', 'temp'),
+      getZipPlugin('chrome', 'dist')
     ]
   },
   {
     ...generalConfig,
-    output: getOutput('opera'),
+    output: getOutput('opera', 'temp'),
     plugins: [
+      new CleanWebpackPlugin(['dist', 'temp']),
       new UglifyJsPlugin(),
-      ...getHTMLPlugins('opera'),
-      ...getCopyPlugins('opera'),
-      getZipPlugin('opera')
+      ...getHTMLPlugins('opera', 'temp'),
+      ...getCopyPlugins('opera', 'temp'),
+      getZipPlugin('opera', 'dist')
     ]
   },
   {
     ...generalConfig,
-    output: getOutput('firefox'),
+    output: getOutput('firefox', 'temp'),
     plugins: [
+      new CleanWebpackPlugin(['dist', 'temp']),
       new UglifyJsPlugin(),
-      ...getHTMLPlugins('firefox'),
-      ...getFirefoxCopyPlugins('firefox'),
-      getZipPlugin('firefox')
+      ...getHTMLPlugins('firefox', 'temp'),
+      ...getFirefoxCopyPlugins('firefox', 'temp'),
+      getZipPlugin('firefox', 'dist')
     ]
   },
 ];

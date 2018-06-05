@@ -9,6 +9,7 @@ const generalConfig = {
     "content": path.resolve(__dirname, "src/content/content.js"),
     "background": path.resolve(__dirname, "src/background/background.js")
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
