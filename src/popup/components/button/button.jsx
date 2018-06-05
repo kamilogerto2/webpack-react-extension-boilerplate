@@ -1,7 +1,11 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export default class Button extends React.Component {
-  render() {
-    return <button onClick={ this.props.action }>{ this.props.label }</button>;
-  }
-}
+const Button = props => <button onClick={props.action}>{ props.label }</button>;
+
+Button.propTypes = {
+  action: PropTypes.func.isRequired,
+  label: PropTypes.string.isRequired,
+};
+
+export default Button;

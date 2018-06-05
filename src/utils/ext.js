@@ -1,3 +1,5 @@
+/* global browser, window, chrome */
+
 const apis = [
   'alarms',
   'bookmarks',
@@ -20,49 +22,58 @@ const apis = [
   'webNavigation',
   'webRequest',
   'windows',
-]
+];
 
-function Extension () {
-  const _this = this
+function Extension() {
+  const self = this;
 
-  apis.forEach(function (api) {
-
-    _this[api] = null
+  apis.forEach((api) => {
+    self[api] = null;
 
     try {
       if (chrome[api]) {
-        _this[api] = chrome[api]
+        self[api] = chrome[api];
       }
-    } catch (e) {}
+    } catch (e) {
+      return;
+    }
 
     try {
       if (window[api]) {
-        _this[api] = window[api]
+        self[api] = window[api];
       }
-    } catch (e) {}
+    } catch (e) {
+      return;
+    }
+
 
     try {
       if (browser[api]) {
-        _this[api] = browser[api]
+        self[api] = browser[api];
       }
-    } catch (e) {}
+    } catch (e) {
+      return;
+    }
+
+
     try {
-      _this.api = browser.extension[api]
-    } catch (e) {}
-  })
+      self.api = browser.extension[api];
+    } catch (e) { }
+  });
 
   try {
     if (browser && browser.runtime) {
-      this.runtime = browser.runtime
+      this.runtime = browser.runtime;
     }
-  } catch (e) {}
+  } catch (e) {
+    return;
+  }
 
   try {
     if (browser && browser.browserAction) {
-      this.browserAction = browser.browserAction
+      this.browserAction = browser.browserAction;
     }
-  } catch (e) {}
-
+  } catch (e) { }
 }
 
 module.exports = new Extension();

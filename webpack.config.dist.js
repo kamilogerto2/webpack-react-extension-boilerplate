@@ -1,15 +1,15 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { getHTMLPlugins, getOutput, getCopyPlugins, getZipPlugin, getFirefoxCopyPlugins } = require('./webpack.utils');
-const CleanWebpackPlugin = require('clean-webpack-plugin'); //installed via npm
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 const path = require('path');
 
 const generalConfig = {
   mode: 'production',
   entry: {
-    "popup": path.resolve(__dirname, "src/popup/popup.jsx"),
-    "options": path.resolve(__dirname, "src/options/options.jsx"),
-    "content": path.resolve(__dirname, "src/content/content.js"),
-    "background": path.resolve(__dirname, "src/background/background.js")
+    popup: path.resolve(__dirname, 'src/popup/popup.jsx'),
+    options: path.resolve(__dirname, 'src/options/options.jsx'),
+    content: path.resolve(__dirname, 'src/content/content.js'),
+    background: path.resolve(__dirname, 'src/background/background.js'),
   },
   module: {
     rules: [
@@ -20,8 +20,16 @@ const generalConfig = {
         query: {
           presets: ['@babel/preset-env','@babel/preset-react'],
         },
+        resolve: {
+          extensions: ['.js', '.jsx'],
+        },
       },
-    ]
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['eslint-loader'],
+      },
+    ],
   },
 };
 
@@ -34,8 +42,8 @@ module.exports = [
       new UglifyJsPlugin(),
       ...getHTMLPlugins('chrome', 'temp'),
       ...getCopyPlugins('chrome', 'temp'),
-      getZipPlugin('chrome', 'dist')
-    ]
+      getZipPlugin('chrome', 'dist'),
+    ],
   },
   {
     ...generalConfig,
@@ -45,8 +53,8 @@ module.exports = [
       new UglifyJsPlugin(),
       ...getHTMLPlugins('opera', 'temp'),
       ...getCopyPlugins('opera', 'temp'),
-      getZipPlugin('opera', 'dist')
-    ]
+      getZipPlugin('opera', 'dist'),
+    ],
   },
   {
     ...generalConfig,
@@ -56,7 +64,7 @@ module.exports = [
       new UglifyJsPlugin(),
       ...getHTMLPlugins('firefox', 'temp'),
       ...getFirefoxCopyPlugins('firefox', 'temp'),
-      getZipPlugin('firefox', 'dist')
-    ]
+      getZipPlugin('firefox', 'dist'),
+    ],
   },
 ];
