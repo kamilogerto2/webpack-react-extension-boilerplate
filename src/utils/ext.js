@@ -58,7 +58,9 @@ function Extension() {
 
     try {
       self.api = browser.extension[api];
-    } catch (e) { }
+    } catch (e) {
+      // I want application to not crush, but don't care about the message
+    }
   });
 
   try {
@@ -73,7 +75,9 @@ function Extension() {
     if (browser && browser.browserAction) {
       this.browserAction = browser.browserAction;
     }
-  } catch (e) { }
+  } catch (e) {
+    // I want application to not crush, but don't care about the message
+  }
 }
 
 module.exports = new Extension();

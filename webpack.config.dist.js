@@ -22,6 +22,20 @@ const generalConfig = {
         exclude: /node_modules/,
         use: ['eslint-loader'],
       },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
     ],
   },
 };
@@ -32,7 +46,6 @@ module.exports = [
     output: getOutput('chrome', 'temp'),
     entry: getEntry(),
     plugins: [
-      new CleanWebpackPlugin(['dist', 'temp']),
       new UglifyJsPlugin(),
       ...getHTMLPlugins('chrome', 'temp'),
       ...getCopyPlugins('chrome', 'temp'),
@@ -44,7 +57,6 @@ module.exports = [
     output: getOutput('opera', 'temp'),
     entry: getEntry(),
     plugins: [
-      new CleanWebpackPlugin(['dist', 'temp']),
       new UglifyJsPlugin(),
       ...getHTMLPlugins('opera', 'temp'),
       ...getCopyPlugins('opera', 'temp'),
@@ -56,7 +68,6 @@ module.exports = [
     entry: getEntry(),
     output: getOutput('firefox', 'temp'),
     plugins: [
-      new CleanWebpackPlugin(['dist', 'temp']),
       new UglifyJsPlugin(),
       ...getHTMLPlugins('firefox', 'temp'),
       ...getFirefoxCopyPlugins('firefox', 'temp'),

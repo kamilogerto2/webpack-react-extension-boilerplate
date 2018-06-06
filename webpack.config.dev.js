@@ -21,6 +21,20 @@ const generalConfig = {
         exclude: /node_modules/,
         use: ['eslint-loader'],
       },
+      {
+        test: /\.scss$/,
+        use: [
+          {
+            loader: 'style-loader',
+          },
+          {
+            loader: 'css-loader',
+          },
+          {
+            loader: 'sass-loader',
+          },
+        ],
+      },
     ],
   },
 };
@@ -49,8 +63,8 @@ module.exports = [
     entry: getEntry(),
     output: getOutput('firefox'),
     plugins: [
-      ...getHTMLPlugins('firefox'),
       ...getFirefoxCopyPlugins('firefox'),
+      ...getHTMLPlugins('firefox'),
     ],
   },
 ];

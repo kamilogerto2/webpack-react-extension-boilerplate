@@ -47,16 +47,8 @@ const getFirefoxCopyPlugins = (browserDir, outputDir = 'dev', sourceDir = 'src')
   new CopyWebpackPlugin([
     { from: `${sourceDir}/assets`, to: path.resolve(__dirname, `${outputDir}/${browserDir}/assets`) },
     { from: `${sourceDir}/_locales`, to: path.resolve(__dirname, `${outputDir}/${browserDir}/_locales`) },
+    { from: `${sourceDir}/manifest-ff.json`, to: path.resolve(__dirname, `${outputDir}/${browserDir}/manifest.json`) },
   ]),
-  new MergeJsonWebpackPlugin({
-    files: [
-      `${sourceDir}/manifest.json`,
-      `${sourceDir}/manifest-ff.json`,
-    ],
-    output: {
-      fileName: path.resolve(__dirname, `${outputDir}/${browserDir}/manifest.json`)
-    },
-  }),
 ];
 
 const getZipPlugin = (browserDir, outputDir = 'dist') =>

@@ -22,6 +22,7 @@
     "babel-preset-es2015": "^6.24.1",
     "clean-webpack-plugin": "^0.1.19",
     "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
     "eslint": "^4.19.1",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-loader": "^2.0.0",
@@ -31,10 +32,14 @@
     "eslint-plugin-react": "^7.9.1",
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
+    "json-merge-webpack-plugin": "^1.0.1",
     "merge-jsons-webpack-plugin": "^1.0.15",
+    "node-sass": "^4.9.0",
     "prop-types": "^15.6.1",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
+    "sass-loader": "^7.0.3",
+    "style-loader": "^0.21.0",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "zip-webpack-plugin": "^3.0.0"
   }
