@@ -35,16 +35,23 @@
 </dl>
 
 <dl>
-  <dt>Sensible starting point</dt>
+  <dt>Newest js technology stack</dt>
   <dd>
-    You can use ES6, ES5. If you want use for example scss - you can easly configure webpack to process it.
+    You can use ES6, ES5.
+  </dd>
+</dl>
+
+<dl>
+  <dt>Comfortable styles import</dt>
+  <dd>
+    With react you can loas styles directy and you can use scss for styling.
   </dd>
 </dl>
 
 <dl>
   <dt>Easily configurable and extendable</dt>
   <dd>
-    Project use webpack so you can easly customize your project depends on your needs.
+    Project use webpack so you can easly customize your project depends on your needs. In config.json you can define source path for each browser (if needed - default it's the same source), destintantion and develop directory.
   </dd>
 </dl>
 
