@@ -7,7 +7,7 @@
     <strong>Works for Chrome, Opera & Firefox.</strong>
   </p>
   <p>
-  [This plugin is higly inspired by: extension-boilerplate](https://github.com/EmailThis/extension-boilerplate) and extend https://github.com/kamilogerto2/webpack-extension-boilerplate 
+  This plugin is higly inspired by extension-boilerplate (https://github.com/EmailThis/extension-boilerplate) and extend https://github.com/kamilogerto2/webpack-extension-boilerplate 
   </p>
 </div>
 
