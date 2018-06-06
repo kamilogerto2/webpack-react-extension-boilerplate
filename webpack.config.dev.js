@@ -1,4 +1,5 @@
 const { getHTMLPlugins, getOutput, getCopyPlugins, getFirefoxCopyPlugins, getEntry } = require('./webpack.utils');
+const config = require('./config.json');
 
 const generalConfig = {
   mode: 'development',
@@ -42,29 +43,29 @@ const generalConfig = {
 module.exports = [
   {
     ...generalConfig,
-    entry: getEntry(),
-    output: getOutput('chrome'),
+    entry: getEntry(config.chromePath),
+    output: getOutput('chrome', config.devDirectory),
     plugins: [
-      ...getHTMLPlugins('chrome'),
-      ...getCopyPlugins('chrome'),
+      ...getHTMLPlugins('chrome', config.devDirectory, config.chromePath),
+      ...getCopyPlugins('chrome', config.devDirectory, config.chromePath),
     ],
   },
   {
     ...generalConfig,
-    entry: getEntry(),
-    output: getOutput('opera'),
+    entry: getEntry(config.operaPath),
+    output: getOutput('opera', config.devDirectory),
     plugins: [
-      ...getHTMLPlugins('opera'),
-      ...getCopyPlugins('opera'),
+      ...getHTMLPlugins('opera', config.devDirectory, config.operaPath),
+      ...getCopyPlugins('opera', config.devDirectory, config.operaPath),
     ],
   },
   {
     ...generalConfig,
-    entry: getEntry(),
-    output: getOutput('firefox'),
+    entry: getEntry(config.firefoxPath),
+    output: getOutput('firefox', config.devDirectory),
     plugins: [
-      ...getFirefoxCopyPlugins('firefox'),
-      ...getHTMLPlugins('firefox'),
+      ...getFirefoxCopyPlugins('firefox', config.devDirectory, config.firefoxPath),
+      ...getHTMLPlugins('firefox', config.devDirectory, config.firefoxPath),
     ],
   },
 ];

@@ -1,5 +1,6 @@
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const { getHTMLPlugins, getOutput, getCopyPlugins, getZipPlugin, getFirefoxCopyPlugins, getEntry } = require('./webpack.utils');
+const config = require('./config.json');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const generalConfig = {
@@ -43,35 +44,38 @@ const generalConfig = {
 module.exports = [
   {
     ...generalConfig,
-    output: getOutput('chrome', 'temp'),
-    entry: getEntry(),
+    output: getOutput('chrome', config.tempDirectory),
+    entry: getEntry(config.chromePath),
     plugins: [
+      new CleanWebpackPlugin(['dist', 'temp']),
       new UglifyJsPlugin(),
-      ...getHTMLPlugins('chrome', 'temp'),
-      ...getCopyPlugins('chrome', 'temp'),
-      getZipPlugin('chrome', 'dist'),
+      ...getHTMLPlugins('chrome', config.tempDirectory, config.chromePath),
+      ...getCopyPlugins('chrome', config.tempDirectory, config.chromePath),
+      getZipPlugin('chrome', config.distDirectory),
     ],
   },
   {
     ...generalConfig,
-    output: getOutput('opera', 'temp'),
-    entry: getEntry(),
+    output: getOutput('opera', config.tempDirectory),
+    entry: getEntry(config.operaPath),
     plugins: [
+      new CleanWebpackPlugin(['dist', 'temp']),
       new UglifyJsPlugin(),
-      ...getHTMLPlugins('opera', 'temp'),
-      ...getCopyPlugins('opera', 'temp'),
-      getZipPlugin('opera', 'dist'),
+      ...getHTMLPlugins('opera', config.tempDirectory, config.operaPath),
+      ...getCopyPlugins('opera', config.tempDirectory, config.operaPath),
+      getZipPlugin('opera', config.distDirectory),
     ],
   },
   {
     ...generalConfig,
-    entry: getEntry(),
-    output: getOutput('firefox', 'temp'),
+    entry: getEntry(config.firefoxPath),
+    output: getOutput('firefox', config.tempDirectory),
     plugins: [
+      new CleanWebpackPlugin(['dist', 'temp']),
       new UglifyJsPlugin(),
-      ...getHTMLPlugins('firefox', 'temp'),
-      ...getFirefoxCopyPlugins('firefox', 'temp'),
-      getZipPlugin('firefox', 'dist'),
+      ...getHTMLPlugins('firefox', config.tempDirectory, config.firefoxPath),
+      ...getFirefoxCopyPlugins('firefox', config.tempDirectory, config.firefoxPath),
+      getZipPlugin('firefox', config.distDirectory),
     ],
   },
 ];
