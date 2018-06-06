@@ -1,7 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ZipPlugin = require('zip-webpack-plugin');
-const MergeJsonWebpackPlugin = require('merge-jsons-webpack-plugin');
 const path = require('path');
 
 const getHTMLPlugins = (browserDir, outputDir = 'dev', sourceDir = 'src') => [
