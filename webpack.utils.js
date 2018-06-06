@@ -4,51 +4,60 @@ const ZipPlugin = require('zip-webpack-plugin');
 const MergeJsonWebpackPlugin = require('merge-jsons-webpack-plugin');
 const path = require('path');
 
-const getHTMLPlugins = (browserDir, outputDir = 'dev') => [
+const getHTMLPlugins = (browserDir, outputDir = 'dev', sourceDir = 'src') => [
   new HtmlWebpackPlugin({
     title: 'Popup',
     filename: path.resolve(__dirname, `${outputDir}/${browserDir}/popup/index.html`),
-    template: 'src/popup/index.html',
-    chunks: ['popup']
+    template: `${sourceDir}/popup/index.html`,
+    chunks: ['popup'],
   }),
   new HtmlWebpackPlugin({
     title: 'Options',
     filename: path.resolve(__dirname, `${outputDir}/${browserDir}/options/index.html`),
-    template: 'src/options/index.html',
-    chunks: ['options']
+    template: `${sourceDir}/options/index.html`,
+    chunks: ['options'],
   }),
 ];
 
 const getOutput = (browserDir, outputDir = 'dev') => {
   return {
     path: path.resolve(__dirname, `${outputDir}/${browserDir}`),
-    filename: '[name]/[name].js'
-  }
+    filename: '[name]/[name].js',
+  };
 };
 
-const getCopyPlugins = (browserDir, outputDir = 'dev') => [
+const getEntry = (sourceDir = 'src') => {
+  return {
+    popup: path.resolve(__dirname, `${sourceDir}/popup/popup.jsx`),
+    options: path.resolve(__dirname, `${sourceDir}/options/options.jsx`),
+    content: path.resolve(__dirname, `${sourceDir}/content/content.js`),
+    background: path.resolve(__dirname, `${sourceDir}/background/background.js`),
+  };
+};
+
+const getCopyPlugins = (browserDir, outputDir = 'dev', sourceDir = 'src') => [
   new CopyWebpackPlugin([
-    {from: 'src/assets', to: path.resolve(__dirname, `${outputDir}/${browserDir}/assets`)},
-    {from: 'src/_locales', to: path.resolve(__dirname, `${outputDir}/${browserDir}/_locales`)},
-    {from: 'src/manifest.json', to: path.resolve(__dirname, `${outputDir}/${browserDir}/manifest.json`)},
+    { from: `${sourceDir}/assets`, to: path.resolve(__dirname, `${outputDir}/${browserDir}/assets`) },
+    { from: `${sourceDir}/_locales`, to: path.resolve(__dirname, `${outputDir}/${browserDir}/_locales`) },
+    { from: `${sourceDir}/manifest.json`, to: path.resolve(__dirname, `${outputDir}/${browserDir}/manifest.json`) },
   ]),
 ];
 
-const getFirefoxCopyPlugins = (browserDir, outputDir = 'dev') => [
+const getFirefoxCopyPlugins = (browserDir, outputDir = 'dev', sourceDir = 'src') => [
   new CopyWebpackPlugin([
-    {from: 'src/assets', to: path.resolve(__dirname, `${outputDir}/${browserDir}/assets`)},
-    {from: 'src/_locales', to: path.resolve(__dirname, `${outputDir}/${browserDir}/_locales`)},
+    { from: `${sourceDir}/assets`, to: path.resolve(__dirname, `${outputDir}/${browserDir}/assets`) },
+    { from: `${sourceDir}/_locales`, to: path.resolve(__dirname, `${outputDir}/${browserDir}/_locales`) },
   ]),
   new MergeJsonWebpackPlugin({
     files: [
-      'src/manifest.json',
-      'src/manifest-ff.json',
+      `${sourceDir}/manifest.json`,
+      `${sourceDir}/manifest-ff.json`,
     ],
     output: {
       fileName: path.resolve(__dirname, `${outputDir}/${browserDir}/manifest.json`)
-    }
-  })
-]
+    },
+  }),
+];
 
 const getZipPlugin = (browserDir, outputDir = 'dist') =>
   new ZipPlugin({
@@ -71,5 +80,6 @@ module.exports = {
   getOutput,
   getCopyPlugins,
   getFirefoxCopyPlugins,
-  getZipPlugin
+  getZipPlugin,
+  getEntry,
 };

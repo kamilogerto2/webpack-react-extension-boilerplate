@@ -1,14 +1,7 @@
-const { getHTMLPlugins, getOutput, getCopyPlugins, getFirefoxCopyPlugins } = require('./webpack.utils');
-const path = require('path');
+const { getHTMLPlugins, getOutput, getCopyPlugins, getFirefoxCopyPlugins, getEntry } = require('./webpack.utils');
 
 const generalConfig = {
   mode: 'development',
-  entry: {
-    popup: path.resolve(__dirname, 'src/popup/popup.jsx'),
-    options: path.resolve(__dirname, 'src/options/options.jsx'),
-    content: path.resolve(__dirname, 'src/content/content.js'),
-    background: path.resolve(__dirname, 'src/background/background.js'),
-  },
   devtool: 'source-map',
   module: {
     rules: [
@@ -35,6 +28,7 @@ const generalConfig = {
 module.exports = [
   {
     ...generalConfig,
+    entry: getEntry(),
     output: getOutput('chrome'),
     plugins: [
       ...getHTMLPlugins('chrome'),
@@ -43,6 +37,7 @@ module.exports = [
   },
   {
     ...generalConfig,
+    entry: getEntry(),
     output: getOutput('opera'),
     plugins: [
       ...getHTMLPlugins('opera'),
@@ -51,6 +46,7 @@ module.exports = [
   },
   {
     ...generalConfig,
+    entry: getEntry(),
     output: getOutput('firefox'),
     plugins: [
       ...getHTMLPlugins('firefox'),
