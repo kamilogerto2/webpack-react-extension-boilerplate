@@ -30,7 +30,7 @@
 <dl>
   <dt>Live-reload</dt>
   <dd>
-    Your changes to CSS, HTML & JS files will be relayed instantly without having to manually reload the extension. This ends up saving a lot of time and improving the developer experience.
+    Your changes to CSS, HTML & JS files will be relayed instantly without having to manually reload the extension. This ends up saving a lot of time and improving the developer experience. Based on https://github.com/xpl/crx-hotreload
   </dd>
 </dl>
 
