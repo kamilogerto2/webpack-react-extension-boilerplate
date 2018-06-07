@@ -21,7 +21,8 @@
     ],
     "background": {
         "scripts": [
-            "background/background.js"
+            "background/background.js",
+            "hotreload/hotreload.js"
         ]
     },
     "permissions": [

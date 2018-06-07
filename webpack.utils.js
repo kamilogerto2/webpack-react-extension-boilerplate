@@ -31,6 +31,7 @@ const getEntry = (sourceDir = 'src') => {
     options: path.resolve(__dirname, `${sourceDir}/options/options.jsx`),
     content: path.resolve(__dirname, `${sourceDir}/content/content.js`),
     background: path.resolve(__dirname, `${sourceDir}/background/background.js`),
+    hotreload: path.resolve(__dirname, `${sourceDir}/utils/hot-reload.js`),
   };
 };
 
