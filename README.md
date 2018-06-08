@@ -55,6 +55,19 @@
   </dd>
 </dl>
 
+<dl>
+  <dt>Clean code</dt>
+  <dd>
+    Clean code is the best way for long term support for project. Boilerplate has fully configured eslint with airbnb styleguide.
+  </dd>
+</dl>
+
+<dl>
+  <dt>Test your components!</dt>
+  <dd>
+    Project use some library which support your testing proces. As test runner we use karma, as testing framework mocha. As support to assertion we use chai.
+  </dd>
+</dl>
 
 
 ## Installation
