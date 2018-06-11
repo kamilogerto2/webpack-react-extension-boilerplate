@@ -1,10 +1,10 @@
 {
   "name": "extension-webpack-boilerplate",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Boilerplate for Chrome, FF, Safari exstension",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "karma start",
     "start": "webpack --config webpack.config.dev.js",
     "watch-dev": "webpack --config webpack.config.dev.js --watch",
     "build": "webpack --config webpack.config.dist.js"
