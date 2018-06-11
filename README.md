@@ -4,7 +4,7 @@
   </h1>
 
   <p>
-    <strong>Works for Chrome, Opera & Firefox.</strong>
+    <strong>Works for Chrome, Opera, Edge & Firefox.</strong>
   </p>
   <p>
   This plugin is higly inspired by extension-boilerplate (https://github.com/EmailThis/extension-boilerplate)
@@ -21,7 +21,7 @@
 </dl>
 
 <dl>
-  <dt>Write once and deploy to Chrome, Opera & Firefox</dt>
+  <dt>Write once and deploy to Chrome, Opera, Edge & Firefox</dt>
   <dd>
     Based on WebExtensions. It also includes a tiny polyfill to bring uniformity to the APIs exposed by different browsers.
   </dd>
@@ -85,6 +85,8 @@
 1. Open Firefox browser and navigate to about:debugging
 2. Click "Load Temporary Add-on" and from the file browser, choose `webpack-react-extension-boilerplate/dev/firefox`
 
+##### Load the extension in Edge
+https://docs.microsoft.com/en-us/microsoft-edge/extensions/guides/adding-and-removing-extensions
 
 ## Developing
 The following tasks can be used when you want to start developing the extension and want to enable live reload - 
